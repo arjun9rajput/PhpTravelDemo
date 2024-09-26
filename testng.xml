@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestSuite" parallel="false">
+    <test name="PHP Travels Tests">
+        <parameter name="mode" value="desktop"/> <!-- Can be 'desktop' or 'mobile' -->
+        <classes>
+            <class name="runners.TestRunner"/>
+        </classes>
+    </test>
+</suite>
