@@ -9,17 +9,21 @@ import java.util.Map;
 
 public class DriverFactory {
     public static WebDriver driver;
+    public static ChromeOptions options = new ChromeOptions();
 
     public static WebDriver getDesktopDriver() {
-        System.setProperty("webdriver.chrome.driver", "path-to-chromedriver");
-        return new ChromeDriver(); // Normal Chrome for desktop
+        if(driver == null){
+            return driver= new ChromeDriver(options); // Normal Chrome for desktop
+        }
+        return driver;
     }
 
     public static WebDriver getMobileDriver() {
-        System.setProperty("webdriver.chrome.driver", "path-to-chromedriver");
-        ChromeOptions options = new ChromeOptions();
-        options.setExperimentalOption("mobileEmulation", getMobileEmulationConfig());
-        return new ChromeDriver(options); // Chrome with mobile emulation
+        if (driver==null){
+            options.setExperimentalOption("mobileEmulation", getMobileEmulationConfig());
+            return driver = new ChromeDriver(options); // Chrome with mobile emulation
+        }
+        return driver;
     }
 
     private static Map<String, Object> getMobileEmulationConfig() {

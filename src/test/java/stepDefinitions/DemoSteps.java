@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import config.DriverFactory;
+import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
 import pages.DemoPage;
@@ -38,5 +39,10 @@ public class DemoSteps {
     @And("Switch back to Demo tab")
     public void switch_back_to_demo_tab() {
         driver.switchTo().window(demoPage.getCurrentTab());
+    }
+
+    @After
+    public void tearDown() {
+        DriverFactory.closeDriver();
     }
 }
